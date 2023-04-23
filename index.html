@@ -41,9 +41,31 @@
   <script>
     function gerarNumeros() {
       var quantidade = document.getElementById('quantidadeCaracteres').value;
-      var numeros = '';
+      var numeros = ''; 
+      var numerosChecked = document.getElementById('checkboxNumeros').checked;
+      var letrasChecked = document.getElementById('checkboxLetras').checked;
+      var letrasMaiusculasChecked = document.getElementById('checkboxLetrasMaiusculas').checked;
+      var caracteresEspeciaisChecked = document.getElementById('checkboxCaracteresEspeciais').checked;
+      var caracteres = '';
+
+      if (numerosChecked == true) {
+        caracteres += '0123456789';
+      }
+
+      if (letrasChecked == true) {
+        caracteres += 'abcdefghijklmnopqrstuvwxyz';
+      }
+
+      if (letrasMaiusculasChecked == true) {
+        caracteres += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      }
+
+      if (caracteresEspeciaisChecked == true) {
+        caracteres += '!#$%&()*+,-./:;<=>?@[]^_`{|}~';
+      }
+
       for (var i = 0; i < quantidade; i++) {
-        numeros += Math.floor(Math.random() * 10);
+        numeros += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
       }
       document.getElementById('numerosGerados').innerHTML = numeros;
     }
@@ -61,6 +83,11 @@
 <body>
   <h1>Gerador de Números Aleatórios</h1>
   <input type="number" id="quantidadeCaracteres" placeholder="Quantidade de caracteres" min="1" max="100" value="8">
+  <br>
+  <input type="checkbox" id="checkboxNumeros" checked>Números
+  <input type="checkbox" id="checkboxLetras" checked>Letras
+  <input type="checkbox" id="checkboxLetrasMaiusculas" checked>Letras Maiúsculas
+  <input type="checkbox" id="checkboxCaracteresEspeciais" checked>Caracteres Especiais
   <br>
   <button id="gerarNumeros" onclick="gerarNumeros()">Gerar Números</button>
   <br>
