@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gerador de Números Aleatórios</title>
+  <style>
+    body {
+      background-color: #000; /* Altera a cor de fundo para preto */
+      color: #ff69b4; /* Altera a cor das letras para rosa */
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+
+    h1 {
+      margin-top: 0;
+    }
+
+    #quantidadeCaracteres {
+      width: 200px;
+    }
+
+    #gerarNumeros, #copiarNumeros {
+      margin-top: 10px;
+      background-color: #ff69b4; /* Altera a cor de fundo dos botões para rosa */
+      color: #000; /* Altera a cor das letras dos botões para preto */
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    #numerosGerados {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+
+    .footer {
+      margin-top: 30px;
+      font-size: 14px;
+    }
+  </style>
+  <script>
+    function gerarNumeros() {
+      var quantidade = document.getElementById('quantidadeCaracteres').value;
+      var numeros = '';
+      for (var i = 0; i < quantidade; i++) {
+        numeros += Math.floor(Math.random() * 10);
+      }
+      document.getElementById('numerosGerados').innerHTML = numeros;
+    }
+
+    function copiarNumeros() {
+      var numeros = document.getElementById('numerosGerados').innerHTML;
+      navigator.clipboard.writeText(numeros).then(function() {
+        alert('Números copiados para a área de transferência: ' + numeros);
+      }).catch(function(err) {
+        console.error('Erro ao copiar números: ', err);
+      });
+    }
+  </script>
+</head>
+<body>
+  <h1>Gerador de Números Aleatórios</h1>
+  <input type="number" id="quantidadeCaracteres" placeholder="Quantidade de caracteres" min="1" max="100" value="8">
+  <br>
+  <button id="gerarNumeros" onclick="gerarNumeros()">Gerar Números</button>
+  <br>
+  <button id="copiarNumeros" onclick="copiarNumeros()">Copiar Números</button>
+  <p>Números gerados: <span id="numerosGerados"></span></p>
+  <footer class="footer">
+    Criado por Aleksandro Alves Da Rocha Junior
+  </footer>
+</body>
+</html>
